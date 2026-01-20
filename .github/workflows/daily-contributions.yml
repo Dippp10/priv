@@ -1,0 +1,32 @@
+name: Daily Contributions
+
+on:
+  schedule:
+    - cron: "0 10 * * *"   # runs daily at 10:00 UTC
+  workflow_dispatch:
+
+jobs:
+  contribute:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Configure Git identity (YOU)
+        run: |
+          git config user.name "Dippp10"
+          git config user.email "Dippp10@users.noreply.github.com"
+
+      - name: Make 5 real commits
+        run: |
+          for i in {1..5}
+          do
+            echo "- Update $i on $(date -u)" >> activity.md
+            git add activity.md
+            git commit -m "Daily activity update $i"
+          done
+
+      - name: Push commits
+        run: git push
