@@ -34,7 +34,7 @@ jobs:
 
       - name: Push changes using PAT
         env:
-          GH_TOKEN: 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  # Use the PAT secret for authentication
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Use the PAT secret for authentication
         run: |
           # Set the remote URL with the token for authentication
           git remote set-url origin https://github.com/${{ github.repository }}
