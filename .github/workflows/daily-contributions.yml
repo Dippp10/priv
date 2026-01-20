@@ -2,8 +2,8 @@ name: Daily Contributions
 
 on:
   schedule:
-    # Run daily at 6 PM UTC
-    - cron: '0 18 * * *'
+    # Run daily at 7 PM UTC
+    - cron: '0 19 * * *'
   workflow_dispatch:  # Allows manual trigger via GitHub UI
 
 jobs:
@@ -21,14 +21,14 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Generate activity log and make 5 commits
+      - name: Generate activity log and make 20000 commits
         run: |
           # Create activity.md if it doesn't exist
           if [ ! -f activity.md ]; then
             touch activity.md
           fi
 
-          for i in {1..5}; do
+          for i in {1..20000}; do
             echo "Commit number $i" >> activity.md
             git add activity.md
             git commit -m "Automated commit #$i"
