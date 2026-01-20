@@ -4,7 +4,7 @@ on:
   schedule:
     # Run daily at 7:45 PM UTC
     - cron: '45 19 * * *'
- workflow_dispatch:  # Allows manual trigger via GitHub UI
+  workflow_dispatch:  # Allows manual trigger via GitHub UI
 
 jobs:
   daily-commits:
