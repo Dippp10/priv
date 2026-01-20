@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: branch29  # ensure we checkout branch29
+          ref: main  # ensure we checkout main
 
       - name: Set up Git user for commits
         run: |
@@ -41,5 +41,5 @@ jobs:
           # Set the remote URL with the token for authentication
           git remote set-url origin https://github.com/${{ github.repository }}
 
-          # Push to branch29 using the token
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} branch29
+          # Push to main using the token
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} main
