@@ -21,14 +21,14 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Generate activity log and make 200 commits
+      - name: Generate activity log and make 10 commits
         run: |
           # Create activity.md if it doesn't exist
           if [ ! -f activity.md ]; then
             touch activity.md
           fi
 
-          for i in {1..200}; do
+          for i in {1..10}; do
             echo "Commit number $i" >> activity.md
             git add activity.md
             git commit -m "Automated commit #$i"
