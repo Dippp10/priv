@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: branch29  # ensure we checkout branch29
 
       - name: Set up Git user for commits
         run: |
@@ -21,11 +23,11 @@ jobs:
 
       - name: Generate activity log and make 5 commits
         run: |
-          # Create activity.md file if it doesn't exist
+          # Create activity.md if it doesn't exist
           if [ ! -f activity.md ]; then
             touch activity.md
           fi
-          
+
           for i in {1..5}; do
             echo "Commit number $i" >> activity.md
             git add activity.md
@@ -34,10 +36,10 @@ jobs:
 
       - name: Push changes using PAT
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Use the PAT secret for authentication
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Use your saved PAT secret
         run: |
           # Set the remote URL with the token for authentication
           git remote set-url origin https://github.com/${{ github.repository }}
-          
-          # Push using the GitHub token for authentication
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} main
+
+          # Push to branch29 using the token
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} branch29
