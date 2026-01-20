@@ -2,8 +2,8 @@ name: Daily Contributions
 
 on:
   schedule:
-    # Run daily at 9 PM UTC
-    - cron: '0 21 * * *'
+    # Run daily at 5 PM UTC
+    - cron: '0 17 * * *'
   workflow_dispatch:  # Allows manual trigger via GitHub UI
 
 jobs:
