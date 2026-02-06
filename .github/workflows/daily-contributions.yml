@@ -17,10 +17,10 @@ jobs:
           git config --global user.name "Dippp10"
           git config --global user.email "deepikakarthik697@gmail.com"
 
-      - name: Generate 50000 commits
+      - name: Generate 10000 commits
         run: |
           touch activity.md
-          for i in $(seq 1 50000); do
+          for i in $(seq 1 10000); do
             echo "Commit $i on $(date)" >> activity.md
             git add activity.md
             git commit -m "Automated commit #$i"
