@@ -2,40 +2,30 @@ name: Daily Contributions
 
 on:
   schedule:
-    # Run daily at 7:45 PM UTC
-    - cron: '45 19 * * *'
-  workflow_dispatch:  # Allows manual trigger via GitHub UI
+    - cron: '45 19 * * *'   # runs daily at 19:45 UTC
+  workflow_dispatch:
 
 jobs:
   daily-commits:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          ref: main  # ensure we checkout main
+      - uses: actions/checkout@v4
 
-      - name: Set up Git user for commits
+      - name: Set up Git user
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-      - name: Generate activity log and make 5 commits
+          git config --global user.name "Dippp10"
+          git config --global user.email "deepikakarthik697@gmail.com"
+
+      - name: Generate 1000 commits
         run: |
-          # Create activity.md if it doesn't exist
-          if [ ! -f activity.md ]; then
-            touch activity.md
-          fi
-          for i in {1..5}; do
-            echo "Commit number $i" >> activity.md
+          touch activity.md
+          for i in $(seq 1 1000); do
+            echo "Commit $i on $(date)" >> activity.md
             git add activity.md
             git commit -m "Automated commit #$i"
           done
-      - name: Push changes using PAT
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Use your saved PAT secret
-        run: |
-          # Set the remote URL with the token for authentication
-          git remote set-url origin https://github.com/${{ github.repository }}
-          # Push to main using the token
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} main
+
+      - name: Push changes
+        run: git push origin main
+
