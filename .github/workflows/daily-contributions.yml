@@ -2,7 +2,7 @@ name: Daily Contributions
 
 on:
   schedule:
-  - cron: '35 2 * * *'  # 02:35 AM UTC = 3:35 AM Oman time
+  - cron: '35 2 * * *'  # 02:35 AM UTC = 6:35 AM Oman time
   workflow_dispatch:
 
 jobs:
